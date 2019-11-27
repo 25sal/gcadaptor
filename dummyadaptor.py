@@ -27,9 +27,12 @@ def fill_queue(the_queue):
                           "message": '{"subject": "CREATE_PRODUCER", "type": "PV", "id": "[0]:[1]", '
                                      '"profile":"' + base_url + '/producer.csv"}'})
     the_queue.put_nowait({"time": 1475932000,
-                          "message": '{"subject": "LOAD", "id": "[0]:[1]:[3]", "sequence": 1, "est": 1475932000, '
+                          "message": '{"subject": "LOAD", "id": "[0]:[1]:[1]", "sequence": 1, "est": 1475932000, '
                                      '"lst": 1475939000,  "profile": "' + base_url + '/0_run_1.csv"}'})
-    the_queue.put_nowait({"time": 1475931040,
+    the_queue.put_nowait({"time": 1475935000,
+                          "message": '{"subject": "ATTACH_HC_DEVICE", "id": "[0]:[2]:[1]", '
+                                     '"profile": "' + base_url + '/0_2_1.csv"}'})
+    the_queue.put_nowait({"time": 1475991040,
                           "message": '{"subject": "SIMULATION","status": "stopped"}'})
 
 
