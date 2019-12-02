@@ -57,17 +57,22 @@ class WebAgent(agent.Agent):
 
         return {"time": self.simulated_time, "message": '{"subject": "TIME", "time": ' + str(self.simulated_time) + '}'}
 
+    async def my_post_controller(self, request):
+        form = await request.post()
+        print(form)
 
 @click.command()
 @click.option('--jid', prompt="Agent JID> ")
 @click.option('--pwd', prompt="Password>", hide_input=True)
-@click.option('--port', default=10000)
+@click.option('--port', default=10001)
 def run(jid, pwd, port):
     a = WebAgent(jid, pwd)
     a.web.port = port
 
     a.web.add_get("/getmessage", a.get_message, "message.html")
     a.web.add_get("/gettime", a.get_time, "message.html")
+    a.web.add_post("/postmessage",a.my_post_controller, None)
+
     a.start(auto_register=True)
 
     print("Agent web at {}:{}".format(a.web.hostname, a.web.port))
